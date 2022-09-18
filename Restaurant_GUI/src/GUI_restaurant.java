@@ -35,8 +35,8 @@ public class GUI_restaurant extends JFrame {
 	private JTextField quan_com;
 	private JTextField quan_bun;
 	private JTextField quan_pho;
-	private JTextField textField_3;
 	
+	//Variable List
 	double firstnum;
 	double secondnum;
 	double result;
@@ -44,17 +44,24 @@ public class GUI_restaurant extends JFrame {
 	String answer;
 	double[] i = new double[5];
 	double[] j = new double[5];
+	double[] k = new double[5];
+	double[] l = new double[5];
 	double tax_price;
 	double Total_price;
 	double sub_total_price;
+	double pCom = 1;
+	double pBun = 2;
+	double pPho = 3;
+	double pBanhMi = 4;
+	double pMien = 5;
+	double pNclc = 1;
+	double pCaphe = 6;
+	double pCocacola = 3;
+	double pPepsi = 3;
+	double pMirinda = 4;
 	
 	private JTextField quan_BanhMi;
 	private JTextField quan_mien;
-	private JTextField quan_lavie;
-	private JTextField quan_caphe;
-	private JTextField quan_coca;
-	private JTextField quan_pepsi;
-	private JTextField quan_mirinda;
 	private JTextField txtDrinkCost;
 	private JTextField txtDeliveryCost;
 	private JTextField txtFoodCost;
@@ -67,6 +74,31 @@ public class GUI_restaurant extends JFrame {
 	private JTextField txtSubTotal;
 	private JTextField txtTax;
 	private JTextField txtTotal;
+	private JTextField txtCm;
+	private JTextField txtBn;
+	private JTextField txtPh;
+	private JTextField txtBnhM;
+	private JTextField txtMin;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField quan_Nclc;
+	private JTextField quan_CaPhe;
+	private JTextField quan_Coca;
+	private JTextField quan_pepsi;
+	private JTextField quan_Mirinda;
+	private JTextField txtNcLc;
+	private JTextField txtCPh;
+	private JTextField TxtCoca;
+	private JTextField txtPepsi;
+	private JTextField txtMirinda;
 
 	/**
 	 * Launch the application.
@@ -89,7 +121,7 @@ public class GUI_restaurant extends JFrame {
 	 */
 	public GUI_restaurant() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 938, 613);
+		setBounds(100, 100, 976, 613);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -102,63 +134,6 @@ public class GUI_restaurant extends JFrame {
 		contentPane.add(Mien);
 		Mien.setLayout(null);
 		
-		JCheckBox Com = new JCheckBox("Cơm");
-		Com.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cFood = Double.parseDouble(food.getText());
-				double rice = Double.parseDouble(quan_com.getText());
-				double pRice = 2.5;
-				
-				if(Com.isSelected()) {
-					i[0] = (rice * pRice) + cFood;
-					String pMeal = String.format("%.2f", i[0]);
-					food.setText(pMeal);
-				}
-			}
-		});
-		Com.setFont(new Font("Tahoma", Font.BOLD, 18));
-		Com.setBounds(6, 16, 93, 21);
-		Mien.add(Com);
-		
-		JCheckBox Bun = new JCheckBox("Bún");
-		Bun.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cFood = Double.parseDouble(food.getText());
-				double bun = Double.parseDouble(quan_bun.getText());
-				double pBun = 2;
-				
-				if(Bun.isSelected()) {
-					i[1] = (bun * pBun) + cFood;
-					String pMeal = String.format("%.2f", i[1]);
-					food.setText(pMeal);
-				}
-			}
-		});
-		Bun.setFont(new Font("Tahoma", Font.BOLD, 18));
-		Bun.setBounds(6, 52, 93, 21);
-		Mien.add(Bun);
-		
-		JCheckBox Pho = new JCheckBox("Phở");
-		Pho.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cFood = Double.parseDouble(food.getText());
-				double pho = Double.parseDouble(quan_pho.getText());
-				double pPho = 3;
-				
-				if(Pho.isSelected()) {
-					i[2] = (pho * pPho) + cFood;
-					String pMeal = String.format("%.2f", i[2]);
-					food.setText(pMeal);
-				}
-			}
-		});
-		Pho.setFont(new Font("Tahoma", Font.BOLD, 18));
-		Pho.setBounds(6, 84, 93, 21);
-		Mien.add(Pho);
-		
 		quan_com = new JTextField();
 		quan_com.setText("0");
 		quan_com.setHorizontalAlignment(SwingConstants.CENTER);
@@ -170,66 +145,28 @@ public class GUI_restaurant extends JFrame {
 		quan_bun.setText("0");
 		quan_bun.setHorizontalAlignment(SwingConstants.CENTER);
 		quan_bun.setColumns(10);
-		quan_bun.setBounds(240, 54, 59, 23);
+		quan_bun.setBounds(240, 52, 59, 23);
 		Mien.add(quan_bun);
 		
 		quan_pho = new JTextField();
 		quan_pho.setText("0");
 		quan_pho.setHorizontalAlignment(SwingConstants.CENTER);
 		quan_pho.setColumns(10);
-		quan_pho.setBounds(240, 87, 59, 21);
+		quan_pho.setBounds(240, 85, 59, 21);
 		Mien.add(quan_pho);
-		
-		JCheckBox BanhMi = new JCheckBox("Bánh mì");
-		BanhMi.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cFood = Double.parseDouble(food.getText());
-				double BanhMi = Double.parseDouble(quan_BanhMi.getText());
-				double pBanhMi = 1.5;
-				
-				if(Com.isSelected()) {
-					i[3] = (BanhMi * pBanhMi) + cFood;
-					String pMeal = String.format("%.2f", i[3]);
-					food.setText(pMeal);
-				}
-			}
-		});
-		BanhMi.setFont(new Font("Tahoma", Font.BOLD, 18));
-		BanhMi.setBounds(6, 115, 125, 21);
-		Mien.add(BanhMi);
 		
 		quan_BanhMi = new JTextField();
 		quan_BanhMi.setText("0");
 		quan_BanhMi.setHorizontalAlignment(SwingConstants.CENTER);
 		quan_BanhMi.setColumns(10);
-		quan_BanhMi.setBounds(240, 118, 59, 21);
+		quan_BanhMi.setBounds(240, 115, 59, 23);
 		Mien.add(quan_BanhMi);
-		
-		JCheckBox mien = new JCheckBox("Miến");
-		mien.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cFood = Double.parseDouble(food.getText());
-				double Mien = Double.parseDouble(quan_mien.getText());
-				double pMien = 3.5;
-				
-				if(Com.isSelected()) {
-					i[4] = (Mien * pMien) + cFood;
-					String pMeal = String.format("%.2f", i[4]);
-					food.setText(pMeal);
-				}
-			}
-		});
-		mien.setFont(new Font("Tahoma", Font.BOLD, 18));
-		mien.setBounds(6, 149, 125, 21);
-		Mien.add(mien);
 		
 		quan_mien = new JTextField();
 		quan_mien.setText("0");
 		quan_mien.setHorizontalAlignment(SwingConstants.CENTER);
 		quan_mien.setColumns(10);
-		quan_mien.setBounds(240, 149, 59, 21);
+		quan_mien.setBounds(240, 148, 59, 25);
 		Mien.add(quan_mien);
 		
 		JCheckBox Tax_choice = new JCheckBox("Tax");
@@ -261,13 +198,346 @@ public class GUI_restaurant extends JFrame {
 					Delivery.setText(pDelivery);
 				}
 				else {
-					Delivery.setText(null);
+					double zero = 0;
+					String setBack = String.format("%.2f", zero);
+					Delivery.setText(setBack);
 				}
 			}
 		});
 		Home_deliver_choice.setFont(new Font("Tahoma", Font.BOLD, 18));
 		Home_deliver_choice.setBounds(133, 182, 159, 21);
 		Mien.add(Home_deliver_choice);
+		
+		JButton plus1 = new JButton("+");
+		plus1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_com.getText());
+				
+				num = num + 1;
+				quan_com.setText(Double.toString(num));
+				
+				i[0] = pCom * num;
+			}
+		});
+		plus1.setBounds(166, 16, 64, 24);
+		Mien.add(plus1);
+		
+		JButton minus1 = new JButton("-");
+		minus1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_com.getText());
+				
+				if(num > 0) {
+					num = num -1;
+					quan_com.setText(Double.toString(num));
+				}
+				
+				i[0] = i[0] - pCom;
+				
+			}
+		});
+		minus1.setBounds(92, 16, 64, 24);
+		Mien.add(minus1);
+		
+		txtCm = new JTextField();
+		txtCm.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCm.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtCm.setText("Cơm");
+		txtCm.setBounds(3, 17, 79, 22);
+		Mien.add(txtCm);
+		txtCm.setColumns(10);
+		
+		txtBn = new JTextField();
+		txtBn.setText("Bún");
+		txtBn.setHorizontalAlignment(SwingConstants.CENTER);
+		txtBn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtBn.setColumns(10);
+		txtBn.setBounds(3, 52, 79, 22);
+		Mien.add(txtBn);
+		
+		txtPh = new JTextField();
+		txtPh.setText("Phở");
+		txtPh.setHorizontalAlignment(SwingConstants.CENTER);
+		txtPh.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtPh.setColumns(10);
+		txtPh.setBounds(3, 84, 79, 22);
+		Mien.add(txtPh);
+		
+		txtBnhM = new JTextField();
+		txtBnhM.setText("Bánh Mì");
+		txtBnhM.setHorizontalAlignment(SwingConstants.CENTER);
+		txtBnhM.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtBnhM.setColumns(10);
+		txtBnhM.setBounds(3, 114, 79, 22);
+		Mien.add(txtBnhM);
+		
+		txtMin = new JTextField();
+		txtMin.setText("Miến");
+		txtMin.setHorizontalAlignment(SwingConstants.CENTER);
+		txtMin.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtMin.setColumns(10);
+		txtMin.setBounds(3, 148, 79, 25);
+		Mien.add(txtMin);
+		
+		JButton plus2 = new JButton("+");
+		plus2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_bun.getText());
+				
+				
+				num = num + 1;
+				quan_bun.setText(Double.toString(num));
+				
+				i[1] = pBun * num;
+			}
+		});
+		plus2.setBounds(166, 50, 64, 24);
+		Mien.add(plus2);
+		
+		JButton plus3 = new JButton("+");
+		plus3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_pho.getText());
+				
+				
+				num = num + 1;
+				quan_pho.setText(Double.toString(num));
+				
+				i[2] = pPho * num;
+			}
+		});
+		plus3.setBounds(166, 84, 64, 24);
+		Mien.add(plus3);
+		
+		JButton plus4 = new JButton("+");
+		plus4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_BanhMi.getText());
+				
+				num = num + 1;
+				quan_BanhMi.setText(Double.toString(num));
+				
+				i[3] = pBanhMi * num;
+			}
+		});
+		plus4.setBounds(166, 114, 64, 24);
+		Mien.add(plus4);
+		
+		JButton plus5 = new JButton("+");
+		plus5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_mien.getText());
+				
+				
+				num = num + 1;
+				quan_mien.setText(Double.toString(num));
+				
+				i[4] = pMien * num;
+			}
+		});
+		plus5.setBounds(166, 148, 64, 24);
+		Mien.add(plus5);
+		
+		JButton minus2 = new JButton("-");
+		minus2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_bun.getText());
+				
+				if(num > 0) {
+					num = num - 1;
+					quan_bun.setText(Double.toString(num));
+				}
+				i[1] = i[1] - pBun;
+			}
+		});
+		minus2.setBounds(92, 52, 64, 24);
+		Mien.add(minus2);
+		
+		JButton minus3 = new JButton("-");
+		minus3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_pho.getText());
+				
+				if(num > 0) {
+					num = num - 1;
+					quan_pho.setText(Double.toString(num));
+				}
+				i[2] = i[2] - pPho;
+			}
+		});
+		minus3.setBounds(92, 85, 64, 24);
+		Mien.add(minus3);
+		
+		JButton minus4 = new JButton("-");
+		minus4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_BanhMi.getText());
+				
+				if(num > 0) {
+					num = num - 1;
+					quan_BanhMi.setText(Double.toString(num));
+				}
+				i[2] = i[2] - pBanhMi;
+			}
+		});
+		minus4.setBounds(92, 116, 64, 24);
+		Mien.add(minus4);
+		
+		JButton minus5 = new JButton("-");
+		minus5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(food.getText());
+				double num = Double.parseDouble(quan_mien.getText());
+				
+				if(num > 0) {
+					num = num - 1;
+					quan_mien.setText(Double.toString(num));
+				}
+				i[2] = i[2] - pMien;
+			}
+		});
+		minus5.setBounds(92, 148, 64, 24);
+		Mien.add(minus5);
+		
+		JPanel Mien_1 = new JPanel();
+		Mien_1.setLayout(null);
+		Mien_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		Mien_1.setBounds(0, 0, 309, 220);
+		Mien.add(Mien_1);
+		
+		textField = new JTextField();
+		textField.setText("0");
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setColumns(10);
+		textField.setBounds(240, 17, 59, 25);
+		Mien_1.add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("0");
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setColumns(10);
+		textField_1.setBounds(240, 52, 59, 23);
+		Mien_1.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setText("0");
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_2.setColumns(10);
+		textField_2.setBounds(240, 85, 59, 21);
+		Mien_1.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setText("0");
+		textField_3.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_3.setColumns(10);
+		textField_3.setBounds(240, 115, 59, 23);
+		Mien_1.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setText("0");
+		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_4.setColumns(10);
+		textField_4.setBounds(240, 148, 59, 25);
+		Mien_1.add(textField_4);
+		
+		JCheckBox Tax_choice_1 = new JCheckBox("Tax");
+		Tax_choice_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		Tax_choice_1.setBounds(6, 182, 125, 21);
+		Mien_1.add(Tax_choice_1);
+		
+		JCheckBox Home_deliver_choice_1 = new JCheckBox("Home delivery");
+		Home_deliver_choice_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		Home_deliver_choice_1.setBounds(133, 182, 159, 21);
+		Mien_1.add(Home_deliver_choice_1);
+		
+		JButton plus1_1 = new JButton("+");
+		plus1_1.setBounds(166, 16, 64, 24);
+		Mien_1.add(plus1_1);
+		
+		JButton btnNewButton_1_5 = new JButton("-");
+		btnNewButton_1_5.setBounds(92, 16, 64, 24);
+		Mien_1.add(btnNewButton_1_5);
+		
+		textField_5 = new JTextField();
+		textField_5.setText("Cơm");
+		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		textField_5.setColumns(10);
+		textField_5.setBounds(3, 17, 79, 22);
+		Mien_1.add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setText("Bún");
+		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_6.setFont(new Font("Tahoma", Font.BOLD, 14));
+		textField_6.setColumns(10);
+		textField_6.setBounds(3, 52, 79, 22);
+		Mien_1.add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setText("Phở");
+		textField_7.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_7.setFont(new Font("Tahoma", Font.BOLD, 14));
+		textField_7.setColumns(10);
+		textField_7.setBounds(3, 84, 79, 22);
+		Mien_1.add(textField_7);
+		
+		textField_8 = new JTextField();
+		textField_8.setText("Bánh Mì");
+		textField_8.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_8.setFont(new Font("Tahoma", Font.BOLD, 14));
+		textField_8.setColumns(10);
+		textField_8.setBounds(3, 114, 79, 22);
+		Mien_1.add(textField_8);
+		
+		textField_9 = new JTextField();
+		textField_9.setText("Miến");
+		textField_9.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_9.setFont(new Font("Tahoma", Font.BOLD, 14));
+		textField_9.setColumns(10);
+		textField_9.setBounds(3, 148, 79, 25);
+		Mien_1.add(textField_9);
+		
+		JButton plus2_1 = new JButton("+");
+		plus2_1.setBounds(166, 50, 64, 24);
+		Mien_1.add(plus2_1);
+		
+		JButton plus3_1 = new JButton("+");
+		plus3_1.setBounds(166, 84, 64, 24);
+		Mien_1.add(plus3_1);
+		
+		JButton plus4_1 = new JButton("+");
+		plus4_1.setBounds(166, 114, 64, 24);
+		Mien_1.add(plus4_1);
+		
+		JButton plus5_1 = new JButton("+");
+		plus5_1.setBounds(166, 148, 64, 24);
+		Mien_1.add(plus5_1);
+		
+		JButton btnNewButton_1_1_1 = new JButton("-");
+		btnNewButton_1_1_1.setBounds(92, 52, 64, 24);
+		Mien_1.add(btnNewButton_1_1_1);
+		
+		JButton btnNewButton_1_2_1 = new JButton("-");
+		btnNewButton_1_2_1.setBounds(92, 85, 64, 24);
+		Mien_1.add(btnNewButton_1_2_1);
+		
+		JButton btnNewButton_1_3_1 = new JButton("-");
+		btnNewButton_1_3_1.setBounds(92, 116, 64, 24);
+		Mien_1.add(btnNewButton_1_3_1);
+		
+		JButton btnNewButton_1_4_1 = new JButton("-");
+		btnNewButton_1_4_1.setBounds(92, 148, 64, 24);
+		Mien_1.add(btnNewButton_1_4_1);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -326,145 +596,9 @@ public class GUI_restaurant extends JFrame {
 		Delivery.setBounds(165, 132, 134, 41);
 		panel_1.add(Delivery);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_2.setBounds(329, 83, 259, 220);
-		contentPane.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JCheckBox lavie1 = new JCheckBox("Lavie");
-		lavie1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cDrink = Double.parseDouble(Drink.getText());
-				double Lavie = Double.parseDouble(quan_lavie.getText());
-				double pLavie = 1.25;
-				
-				if(lavie1.isSelected()) {
-					j[0] = (Lavie * pLavie) + cDrink;
-					String pDrink = String.format("%.2f", j[0]);
-					Drink.setText(pDrink);
-				}
-			}
-		});
-		lavie1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lavie1.setBounds(6, 19, 125, 21);
-		panel_2.add(lavie1);
-		
-		JCheckBox Caphe1 = new JCheckBox("Cà phê");
-		Caphe1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cDrink = Double.parseDouble(Drink.getText());
-				double Caphe = Double.parseDouble(quan_caphe.getText());
-				double pCaphe = 3;
-				
-				if(Caphe1.isSelected()) {
-					j[1] = (Caphe * pCaphe) + cDrink;
-					String pDrink = String.format("%.2f", j[1]);
-					Drink.setText(pDrink);
-				}
-			}
-		});
-		Caphe1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		Caphe1.setBounds(6, 55, 125, 21);
-		panel_2.add(Caphe1);
-		
-		JCheckBox coca1 = new JCheckBox("Cocacola");
-		coca1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cDrink = Double.parseDouble(Drink.getText());
-				double coca = Double.parseDouble(quan_coca.getText());
-				double pcoca = 2;
-				
-				if(coca1.isSelected()) {
-					j[2] = (coca * pcoca) + cDrink;
-					String pDrink = String.format("%.2f", j[2]);
-					Drink.setText(pDrink);
-				}
-			}
-		});
-		coca1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		coca1.setBounds(6, 88, 125, 21);
-		panel_2.add(coca1);
-		
-		JCheckBox Pepsi1 = new JCheckBox("Pepsi");
-		Pepsi1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cDrink = Double.parseDouble(Drink.getText());
-				double Pepsi = Double.parseDouble(quan_pepsi.getText());
-				double pPepsi = 2;
-				
-				if(Pepsi1.isSelected()) {
-					j[3] = (Pepsi * pPepsi) + cDrink;
-					String pDrink = String.format("%.2f", j[3]);
-					Drink.setText(pDrink);
-				}
-			}
-		});
-		Pepsi1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		Pepsi1.setBounds(6, 121, 125, 21);
-		panel_2.add(Pepsi1);
-		
-		JCheckBox Mirinda1 = new JCheckBox("Mirinda");
-		Mirinda1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				double cDrink = Double.parseDouble(Drink.getText());
-				double Mirinda = Double.parseDouble(quan_mirinda.getText());
-				double pMirinda = 1.5;
-				
-				if(Mirinda1.isSelected()) {
-					j[4] = (Mirinda * pMirinda) + cDrink;
-					String pDrink = String.format("%.2f", j[4]);
-					Drink.setText(pDrink);
-				}
-			}
-		});
-		Mirinda1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		Mirinda1.setBounds(6, 153, 125, 21);
-		panel_2.add(Mirinda1);
-		
-		quan_lavie = new JTextField();
-		quan_lavie.setText("0");
-		quan_lavie.setHorizontalAlignment(SwingConstants.CENTER);
-		quan_lavie.setColumns(10);
-		quan_lavie.setBounds(190, 19, 59, 25);
-		panel_2.add(quan_lavie);
-		
-		quan_caphe = new JTextField();
-		quan_caphe.setText("0");
-		quan_caphe.setHorizontalAlignment(SwingConstants.CENTER);
-		quan_caphe.setColumns(10);
-		quan_caphe.setBounds(190, 56, 59, 25);
-		panel_2.add(quan_caphe);
-		
-		quan_coca = new JTextField();
-		quan_coca.setText("0");
-		quan_coca.setHorizontalAlignment(SwingConstants.CENTER);
-		quan_coca.setColumns(10);
-		quan_coca.setBounds(190, 89, 59, 25);
-		panel_2.add(quan_coca);
-		
-		quan_pepsi = new JTextField();
-		quan_pepsi.setText("0");
-		quan_pepsi.setHorizontalAlignment(SwingConstants.CENTER);
-		quan_pepsi.setColumns(10);
-		quan_pepsi.setBounds(190, 122, 59, 25);
-		panel_2.add(quan_pepsi);
-		
-		quan_mirinda = new JTextField();
-		quan_mirinda.setText("0");
-		quan_mirinda.setHorizontalAlignment(SwingConstants.CENTER);
-		quan_mirinda.setColumns(10);
-		quan_mirinda.setBounds(190, 154, 59, 25);
-		panel_2.add(quan_mirinda);
-		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_3.setBounds(329, 313, 259, 183);
+		panel_3.setBounds(329, 313, 309, 183);
 		contentPane.add(panel_3);
 		panel_3.setLayout(null);
 		
@@ -473,7 +607,7 @@ public class GUI_restaurant extends JFrame {
 		sbTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		sbTotal.setFont(new Font("Tahoma", Font.BOLD, 18));
 		sbTotal.setColumns(10);
-		sbTotal.setBounds(115, 10, 134, 41);
+		sbTotal.setBounds(160, 10, 134, 41);
 		panel_3.add(sbTotal);
 		
 		Taxes = new JTextField();
@@ -481,7 +615,7 @@ public class GUI_restaurant extends JFrame {
 		Taxes.setHorizontalAlignment(SwingConstants.CENTER);
 		Taxes.setFont(new Font("Tahoma", Font.BOLD, 18));
 		Taxes.setColumns(10);
-		Taxes.setBounds(115, 69, 134, 41);
+		Taxes.setBounds(160, 69, 134, 41);
 		panel_3.add(Taxes);
 		
 		sum = new JTextField();
@@ -489,7 +623,7 @@ public class GUI_restaurant extends JFrame {
 		sum.setHorizontalAlignment(SwingConstants.CENTER);
 		sum.setFont(new Font("Tahoma", Font.BOLD, 18));
 		sum.setColumns(10);
-		sum.setBounds(115, 132, 134, 41);
+		sum.setBounds(160, 132, 134, 41);
 		panel_3.add(sum);
 		
 		txtSubTotal = new JTextField();
@@ -521,251 +655,13 @@ public class GUI_restaurant extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_4.setBounds(598, 83, 311, 486);
+		panel_4.setBounds(643, 83, 309, 486);
 		contentPane.add(panel_4);
 		panel_4.setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(10, 10, 291, 454);
 		panel_4.add(tabbedPane);
-		
-		JPanel panel_7 = new JPanel();
-		tabbedPane.addTab("Calculator", null, panel_7, null);
-		panel_7.setLayout(null);
-		
-		textField_3 = new JTextField();
-		textField_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_3.setFont(new Font("Tahoma", Font.BOLD, 27));
-		textField_3.setBounds(10, 10, 266, 55);
-		panel_7.add(textField_3);
-		textField_3.setColumns(10);
-		
-		JButton btndel = new JButton("<-");
-		btndel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String backspace = null;
-				
-				if(textField_3.getText().length() > 0) {
-					StringBuilder StrB = new StringBuilder(textField_3.getText());
-					StrB.deleteCharAt(textField_3.getText().length() - 1);
-					backspace = StrB.toString();
-					textField_3.setText(backspace);
-				}
-				
-			}
-		});
-		btndel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btndel.setBounds(10, 75, 58, 55);
-		panel_7.add(btndel);
-		
-		JButton btnC = new JButton("C");
-		btnC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textField_3.setText(null);
-			}
-		});
-		btnC.setBounds(78, 75, 58, 55);
-		panel_7.add(btnC);
-		
-		JButton btnops = new JButton("+/-");
-		btnops.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				double ops = Double.parseDouble(String.valueOf(textField_3.getText()));
-				ops = ops * (-1);
-				textField_3.setText(String.valueOf(ops));
-			}
-		});
-		btnops.setBounds(146, 75, 58, 55);
-		panel_7.add(btnops);
-		
-		JButton btn_add = new JButton("+");
-		btn_add.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				firstnum = Double.parseDouble(textField_3.getText());
-				textField_3.setText("");
-				operation = "+";
-			}
-		});
-		btn_add.setBounds(218, 75, 58, 55);
-		panel_7.add(btn_add);
-		
-		JButton btn7 = new JButton("7");
-		btn7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn7.getText();
-				textField_3.setText(enterNumber);
-				}
-		});
-		btn7.setBounds(10, 140, 58, 55);
-		panel_7.add(btn7);
-		
-		JButton btn8 = new JButton("8");
-		btn8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn8.getText();
-				textField_3.setText(enterNumber);
-			}
-		});
-		btn8.setBounds(78, 140, 58, 55);
-		panel_7.add(btn8);
-		
-		JButton btn9 = new JButton("9");
-		btn9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn9.getText();
-				textField_3.setText(enterNumber);
-			}
-		});
-		btn9.setBounds(146, 140, 58, 55);
-		panel_7.add(btn9);
-		
-		JButton btn_sub = new JButton("-");
-		btn_sub.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				firstnum = Double.parseDouble(textField_3.getText());
-				textField_3.setText("");
-				operation = "-";
-			}
-		});
-		btn_sub.setBounds(218, 140, 58, 55);
-		panel_7.add(btn_sub);
-		
-		JButton btn4 = new JButton("4");
-		btn4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn4.getText();
-				textField_3.setText(enterNumber);
-			}
-		});
-		btn4.setBounds(10, 205, 58, 55);
-		panel_7.add(btn4);
-		
-		JButton btn5 = new JButton("5");
-		btn5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn5.getText();
-				textField_3.setText(enterNumber);
-			}
-		});
-		btn5.setBounds(78, 205, 58, 55);
-		panel_7.add(btn5);
-		
-		JButton btn6 = new JButton("6");
-		btn6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn6.getText();
-				textField_3.setText(enterNumber);
-			}
-		});
-		btn6.setBounds(146, 205, 58, 55);
-		panel_7.add(btn6);
-		
-		JButton btn_multiply = new JButton("*");
-		btn_multiply.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				firstnum = Double.parseDouble(textField_3.getText());
-				textField_3.setText("");
-				operation = "*";
-			}
-		});
-		btn_multiply.setBounds(218, 205, 58, 55);
-		panel_7.add(btn_multiply);
-		
-		JButton btn1 = new JButton("1");
-		btn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn1.getText();
-				textField_3.setText(enterNumber);
-			}
-		});
-		btn1.setBounds(10, 270, 58, 55);
-		panel_7.add(btn1);
-		
-		JButton btn2 = new JButton("2");
-		btn2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn2.getText();
-				textField_3.setText(enterNumber);
-			}
-		});
-		btn2.setBounds(78, 270, 58, 55);
-		panel_7.add(btn2);
-		
-		JButton btn3 = new JButton("3");
-		btn3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn3.getText();
-				textField_3.setText(enterNumber);
-			}
-		});
-		btn3.setBounds(146, 270, 58, 55);
-		panel_7.add(btn3);
-		
-		JButton btn_divide = new JButton("/");
-		btn_divide.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				firstnum = Double.parseDouble(textField_3.getText());
-				textField_3.setText("");
-				operation = "/";
-			}
-		});
-		btn_divide.setBounds(218, 270, 58, 55);
-		panel_7.add(btn_divide);
-		
-		JButton btn0 = new JButton("0");
-		btn0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String enterNumber = textField_3.getText() + btn0.getText();
-				textField_3.setText(enterNumber);
-			}
-		});
-		btn0.setBounds(10, 335, 58, 55);
-		panel_7.add(btn0);
-		
-		JButton btn_dot = new JButton(".");
-		btn_dot.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(! textField_3.getText().contains("."))
-		          {
-					textField_3.setText(textField_3.getText() + btn_dot.getText());
-		          }
-			}
-		});
-		btn_dot.setBounds(78, 335, 58, 55);
-		panel_7.add(btn_dot);
-		
-		JButton btn_equal = new JButton("=");
-		btn_equal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String answer;
-				secondnum = Double.parseDouble(textField_3.getText());
-				if(operation == "+") {
-					result = firstnum + secondnum;
-					answer = String.format("%.2f", result);
-					textField_3.setText(answer);
-				}
-				
-				if(operation == "-") {
-					result = firstnum - secondnum;
-					answer = String.format("%.2f", result);
-					textField_3.setText(answer);
-				}
-				
-				if(operation == "*") {
-					result = firstnum * secondnum;
-					answer = String.format("%.2f", result);
-					textField_3.setText(answer);
-				}
-				
-				if(operation == "/") {
-					result = firstnum / secondnum;
-					answer = String.format("%.2f", result);
-					textField_3.setText(answer);
-				}
-			}
-		});
-		btn_equal.setBounds(146, 335, 130, 55);
-		panel_7.add(btn_equal);
 		
 		JPanel panel_8 = new JPanel();
 		tabbedPane.addTab("Receipt", null, panel_8, null);
@@ -777,32 +673,29 @@ public class GUI_restaurant extends JFrame {
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		panel_5.setBounds(10, 506, 578, 63);
+		panel_5.setBounds(10, 506, 623, 63);
 		contentPane.add(panel_5);
 		panel_5.setLayout(null);
 		
 		JButton btn_total = new JButton("Total");
 		btn_total.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double cTotal1 = Double.parseDouble(food.getText());
-				double cTotal2 = Double.parseDouble(Drink.getText());
-				double cTotal3 = Double.parseDouble(Delivery.getText());
-				double cTotal4 = Double.parseDouble(Taxes.getText());
+				double Total_food = i[0] + i[1] + i[2] + i[3] + i[4];
+				double Total_drink = j[0] + j[1] + j[2] + j[3] + j[4];
+				double Sub_total = Total_food + Total_drink;
+				double tax = Double.parseDouble(Taxes.getText());
+				double delivery = Double.parseDouble(Delivery.getText());
+				double All_total = Sub_total + tax + delivery;
 				
-				double allTotal1 = cTotal1 + cTotal2 + cTotal3 + cTotal4;
-				double allTotal2 = cTotal1 + cTotal2 + cTotal3;
+				String pFood = String.format("%.2f", Total_food);
+				String pDrink = String.format("%.2f", Total_drink);
+				String pSubTotal = String.format("%.2f", Sub_total);
+				String pAllTotal = String.format("%.2f", All_total);
 				
-				tax_price = cTotal4;
-				Total_price = allTotal1;
-				sub_total_price = allTotal2;
-				
-				String iTotal1 = String.format("%.2f", allTotal1);
-				String iTotal2 = String.format("%.2f", allTotal2);
-				String iTaxtotal = String.format("%.2f", cTotal4);
-				
-				sum.setText(iTotal1);
-				sbTotal.setText(iTotal2);
-				Taxes.setText(iTaxtotal);
+				food.setText(pFood);
+				Drink.setText(pDrink);
+				sbTotal.setText(pSubTotal);
+				sum.setText(pAllTotal);
 				
 			}
 		});
@@ -819,16 +712,45 @@ public class GUI_restaurant extends JFrame {
 		panel_5.add(btnExit);
 		
 		JButton btnReset = new JButton("Reset");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double zero = 0;
+				String reset = String.format("%.2f", zero);
+				quan_com.setText(reset);
+				quan_bun.setText(reset);
+				quan_pho.setText(reset);
+				quan_BanhMi.setText(reset);
+				quan_mien.setText(reset);
+				quan_Nclc.setText(reset);
+				quan_CaPhe.setText(reset);
+				quan_Coca.setText(reset);
+				quan_pepsi.setText(reset);
+				quan_Mirinda.setText(reset);
+				food.setText(reset);
+				Drink.setText(reset);
+				Delivery.setText(reset);
+				sbTotal.setText(reset);
+				Taxes.setText(reset);
+				sum.setText(reset);
+			}
+		});
 		btnReset.setBounds(330, 10, 85, 43);
 		panel_5.add(btnReset);
 		
 		JButton btnReceipt = new JButton("Receipt");
 		btnReceipt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				double subP = Double.parseDouble(sbTotal.getText());
+				double tax = Double.parseDouble(Taxes.getText());
+				double pdelivery = Double.parseDouble(Delivery.getText());
+				double P = Double.parseDouble(sum.getText());
+				
 				textArea.append("\tRestaurant Managing system\n\n" +  
-								"\nTổng trước thuế\t" + sub_total_price + 
-								"\nThuế\t\t" + tax_price + 
-								"\nTổng cộng\t\t" + Total_price);
+								"\nTổng trước thuế\t" + subP + 
+								"\nPhí vận chuyển\t\t" + pdelivery+
+								"\nThuế\t\t" + tax + 
+								"\nTổng cộng\t\t" + P);
 			}
 		});
 		btnReceipt.setBounds(174, 10, 85, 43);
@@ -844,8 +766,249 @@ public class GUI_restaurant extends JFrame {
 		txtRestaurantManagingSystem.setFont(new Font("Tahoma", Font.BOLD, 26));
 		txtRestaurantManagingSystem.setHorizontalAlignment(SwingConstants.CENTER);
 		txtRestaurantManagingSystem.setText("Restaurant Managing system");
-		txtRestaurantManagingSystem.setBounds(0, 0, 899, 63);
+		txtRestaurantManagingSystem.setBounds(0, 0, 939, 63);
 		panel_6.add(txtRestaurantManagingSystem);
 		txtRestaurantManagingSystem.setColumns(10);
+		
+		JPanel Mien_1_1 = new JPanel();
+		Mien_1_1.setLayout(null);
+		Mien_1_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		Mien_1_1.setBounds(329, 83, 309, 220);
+		contentPane.add(Mien_1_1);
+		
+		quan_Nclc = new JTextField();
+		quan_Nclc.setText("0");
+		quan_Nclc.setHorizontalAlignment(SwingConstants.CENTER);
+		quan_Nclc.setColumns(10);
+		quan_Nclc.setBounds(240, 17, 59, 25);
+		Mien_1_1.add(quan_Nclc);
+		
+		quan_CaPhe = new JTextField();
+		quan_CaPhe.setText("0");
+		quan_CaPhe.setHorizontalAlignment(SwingConstants.CENTER);
+		quan_CaPhe.setColumns(10);
+		quan_CaPhe.setBounds(240, 52, 59, 23);
+		Mien_1_1.add(quan_CaPhe);
+		
+		quan_Coca = new JTextField();
+		quan_Coca.setText("0");
+		quan_Coca.setHorizontalAlignment(SwingConstants.CENTER);
+		quan_Coca.setColumns(10);
+		quan_Coca.setBounds(240, 85, 59, 21);
+		Mien_1_1.add(quan_Coca);
+		
+		quan_pepsi = new JTextField();
+		quan_pepsi.setText("0");
+		quan_pepsi.setHorizontalAlignment(SwingConstants.CENTER);
+		quan_pepsi.setColumns(10);
+		quan_pepsi.setBounds(240, 115, 59, 23);
+		Mien_1_1.add(quan_pepsi);
+		
+		quan_Mirinda = new JTextField();
+		quan_Mirinda.setText("0");
+		quan_Mirinda.setHorizontalAlignment(SwingConstants.CENTER);
+		quan_Mirinda.setColumns(10);
+		quan_Mirinda.setBounds(240, 148, 59, 25);
+		Mien_1_1.add(quan_Mirinda);
+		
+		JButton plus6 = new JButton("+");
+		plus6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cDrink = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_Nclc.getText());
+				
+				num = num + 1;
+				quan_Nclc.setText(Double.toString(num));
+				
+				j[0] = pCom * num;
+			}
+		});
+		plus6.setBounds(166, 16, 64, 24);
+		Mien_1_1.add(plus6);
+		
+		JButton minus6 = new JButton("-");
+		minus6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_Nclc.getText());
+				
+				if(num > 0) {
+					num = num -1;
+					quan_Nclc.setText(Double.toString(num));
+				}
+				
+				j[0] = j[0] - pNclc;
+			}
+		});
+		minus6.setBounds(92, 16, 64, 24);
+		Mien_1_1.add(minus6);
+		
+		txtNcLc = new JTextField();
+		txtNcLc.setText("Nước Lọc");
+		txtNcLc.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNcLc.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtNcLc.setColumns(10);
+		txtNcLc.setBounds(3, 17, 79, 22);
+		Mien_1_1.add(txtNcLc);
+		
+		txtCPh = new JTextField();
+		txtCPh.setText("Cà phê");
+		txtCPh.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCPh.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtCPh.setColumns(10);
+		txtCPh.setBounds(3, 52, 79, 22);
+		Mien_1_1.add(txtCPh);
+		
+		TxtCoca = new JTextField();
+		TxtCoca.setText("Cocacola");
+		TxtCoca.setHorizontalAlignment(SwingConstants.CENTER);
+		TxtCoca.setFont(new Font("Tahoma", Font.BOLD, 14));
+		TxtCoca.setColumns(10);
+		TxtCoca.setBounds(3, 84, 79, 22);
+		Mien_1_1.add(TxtCoca);
+		
+		txtPepsi = new JTextField();
+		txtPepsi.setText("Pepsi");
+		txtPepsi.setHorizontalAlignment(SwingConstants.CENTER);
+		txtPepsi.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtPepsi.setColumns(10);
+		txtPepsi.setBounds(3, 114, 79, 22);
+		Mien_1_1.add(txtPepsi);
+		
+		txtMirinda = new JTextField();
+		txtMirinda.setText("Mirinda");
+		txtMirinda.setHorizontalAlignment(SwingConstants.CENTER);
+		txtMirinda.setFont(new Font("Tahoma", Font.BOLD, 14));
+		txtMirinda.setColumns(10);
+		txtMirinda.setBounds(3, 148, 79, 25);
+		Mien_1_1.add(txtMirinda);
+		
+		JButton plus7 = new JButton("+");
+		plus7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cDrink = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_CaPhe.getText());
+				
+				num = num + 1;
+				quan_CaPhe.setText(Double.toString(num));
+				
+				j[1] = pCaphe * num;
+			}
+		});
+		plus7.setBounds(166, 50, 64, 24);
+		Mien_1_1.add(plus7);
+		
+		JButton plus8 = new JButton("+");
+		plus8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cDrink = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_Coca.getText());
+				
+				num = num + 1;
+				quan_Coca.setText(Double.toString(num));
+				
+				j[2] = pCocacola * num;
+			}
+		});
+		plus8.setBounds(166, 84, 64, 24);
+		Mien_1_1.add(plus8);
+		
+		JButton plus9 = new JButton("+");
+		plus9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cDrink = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_pepsi.getText());
+				
+				num = num + 1;
+				quan_pepsi.setText(Double.toString(num));
+				
+				j[3] = pPepsi * num;
+			}
+		});
+		plus9.setBounds(166, 114, 64, 24);
+		Mien_1_1.add(plus9);
+		
+		JButton plus10 = new JButton("+");
+		plus10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cDrink = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_Mirinda.getText());
+				
+				num = num + 1;
+				quan_Mirinda.setText(Double.toString(num));
+				
+				j[4] = pMirinda * num;
+			}
+		});
+		plus10.setBounds(166, 148, 64, 24);
+		Mien_1_1.add(plus10);
+		
+		JButton minus7 = new JButton("-");
+		minus7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_CaPhe.getText());
+				
+				if(num > 0) {
+					num = num -1;
+					quan_CaPhe.setText(Double.toString(num));
+				}
+				
+				j[1] = j[1] - pCaphe;
+			}
+		});
+		minus7.setBounds(92, 52, 64, 24);
+		Mien_1_1.add(minus7);
+		
+		JButton minus8 = new JButton("-");
+		minus8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_Coca.getText());
+				
+				if(num > 0) {
+					num = num -1;
+					quan_Coca.setText(Double.toString(num));
+				}
+				
+				j[2] = j[2] - pCocacola;
+			}
+		});
+		minus8.setBounds(92, 85, 64, 24);
+		Mien_1_1.add(minus8);
+		
+		JButton minus9 = new JButton("-");
+		minus9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_pepsi.getText());
+				
+				if(num > 0) {
+					num = num -1;
+					quan_pepsi.setText(Double.toString(num));
+				}
+				
+				j[3] = j[3] - pPepsi;
+			}
+		});
+		minus9.setBounds(92, 116, 64, 24);
+		Mien_1_1.add(minus9);
+		
+		JButton minus10 = new JButton("-");
+		minus10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double cFood = Double.parseDouble(Drink.getText());
+				double num = Double.parseDouble(quan_Mirinda.getText());
+				
+				if(num > 0) {
+					num = num -1;
+					quan_Mirinda.setText(Double.toString(num));
+				}
+				
+				j[4] = j[4] - pMirinda;
+			}
+		});
+		minus10.setBounds(92, 148, 64, 24);
+		Mien_1_1.add(minus10);
 	}
 }
